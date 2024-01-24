@@ -61,22 +61,21 @@ public class Homework_00 {
 						result = vectorSub(vectorSize, vector1, vector2);
 						// prints out difference of vectors
 						printOperation("-", vector1, vector2, result);
-					} else if (choice == 3) {
-						double magnitude = vectorMag(vectorSize, vector1);
-						// prints out magnitude
-						System.out.println("The magnitude is: " + magnitude);
-						input.nextLine();
-						continue; //FIX WHATEVER THIS IS :(
-					}
-				} else if (choice == 9) {
-					// Will stop the program
-					keepRunning = false;
-					System.out.println("Goodbye!");
-
-				} else {
-					// Will restart the program due to invalid input
-					System.out.println("Please enter a valid number");
+						
+					} 
+				} else if (choice == 3) {
+					double magnitude = vectorMag(vectorSize, vector1);
+					// prints out magnitude
+					System.out.println("The magnitude is: " + magnitude);
+					input.nextLine();
+					continue; //FIX WHATEVER THIS IS :(
 				}
+			}
+			else if (choice == 9) {
+				// Will stop the program
+				keepRunning = false;
+				System.out.println("Goodbye!");
+
 			}
 		}
 		// closes the Scanner object to avoid resource leaks
@@ -103,10 +102,12 @@ public class Homework_00 {
 
 	private static double vectorMag(int size, double[] vector) {
 		double vectorSquared = 0;
+		
 		for (int i = 0; i < size; i++) {
 			// should square all elements within array and add them
 			vectorSquared += Math.pow(vector[i], 2);
 		}
+		
 		return Math.sqrt(vectorSquared);
 	}
 
