@@ -1,3 +1,8 @@
+/*
+ * 2/13/2024
+ * Shows how to use FileReader in Java for reading and writing
+ */
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

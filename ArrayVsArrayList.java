@@ -1,3 +1,8 @@
+/*
+ * 2/13/2024
+ * Shows the difference between an Array vs an ArrayList (objectively better)
+ */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
