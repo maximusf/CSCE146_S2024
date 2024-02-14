@@ -26,7 +26,10 @@ public class ShortcutsList {
 		
 		press Step into (to the right of stop button) --> debug alongside another file
 		press Step over --> debug line by line
-		
+
+		// CTRL + SHIFT + T
+  		// Useful for searching classes among projects and such 
+  
 		
 		*/
 		
