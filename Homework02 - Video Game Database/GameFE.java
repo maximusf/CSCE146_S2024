@@ -1,9 +1,13 @@
 /*
  * Written by Maximus Fernandez
- * Homework 02
+ * Redo: Homework 02
  * Video Game Database!
  * Due 02/15/2024 by 11:55PM
  */
+
+// GAME FE IS DONE, NOW ONLY NEED TO ADJUST GAMEMANAGER
+// NEED TO ADD writeDatabaseFile(fileName) AND writeSearchesFile(fileName)
+// 
 
 import java.io.*;
 import java.util.InputMismatchException;
@@ -50,27 +54,27 @@ public class GameFE {
 		int choice = userPrompt();
 
 		switch (choice) {
-		case 1:
-			loadDatabase(); //loads the .txt file entered
+		case 1: //done
+			loadFile(); //loads the .txt file entered
 			break;
-		case 2:
+		case 2: //done
 			if(fileName == null)
 			{
-				print("You have not loaded in a video game database. Try again.");
+				print("You have not loaded in a video game database file. Try again.");
 			}
 			else {
-				searchDatabase();
+				searchFile();
 			}
 			
 			break;
-		case 3:
+		case 3: //done
 			if (fileName == null) {
 			    // Print "No file has been loaded" if no file is loaded
 			    print("You have not loaded in a video game database. Try again.");
 			} else {
 			    if (gameName == null && consoleName == null) {
 			        // If both choices are null, print the database
-			    	printGames();
+			    	printDatabase();
 			    } else {
 			        // Otherwise, print the searches
 			        printSearches();
@@ -81,8 +85,12 @@ public class GameFE {
 			
 			break;
 		case 4:
-			print("Printing current results to file...");
-			resultsToFile();
+			if(gameName == null && consoleName == null)
+				writeDatabaseFile();
+			else
+				writeSearchFile();
+			
+			print("Successfully printed current results to file!");
 			break;
 		case 0:
 			print("Goodbye!");
@@ -98,7 +106,7 @@ public class GameFE {
 
 	// case 1
 	// calls readGameFile method within gameManager
-	private static void loadDatabase() {
+	private static void loadFile() {
 		print("Enter the file name");
 		String fileName = input.nextLine();
 		gameManager.readGameFile(fileName, null, null);
@@ -107,45 +115,41 @@ public class GameFE {
 
 	// case 2
 	// calls readGameFile method within gameManager
-	private static String searchDatabase() {
-		// CHECK SHREK ASSIGNMENT
-		// CHECK TACO MANAGER
+	private static void searchFile() {
+		//print("Enter the file you would like to search");
+	    print("Enter the name of the game or '*' for all" );
+	   // String choice1 = input.nextLine();
+	    gameName = input.nextLine();
+	    
+	    print("Enter search term for Console or '*' for all ");
+	   // String choice2 = input.nextLine();
+	    consoleName = input.nextLine();
+	    gameManager.readGameFile(fileName, gameName, consoleName);
+	    gameManager.printSearches();
 		
 	}
 	
 	// case 3
-	private static void resultsToConsole() {
-		print("Enter the name of the game or '*' for all");
-		String gameName = input.nextLine();
-		print("Enter the name of the console or '*' for all");
-		String consoleName = input.nextLine();
-		//Goes through all matching game/console names and places them in search linked list
-		gameManager.readGameFile(fileName, gameName, consoleName);
-		//Prints all the searches
-		gameManager.printSearches();
-		
-	}
-
-	// case 4
-	private static void resultsToFile() {
-		print("Enter the name of the file you want to create");
-		String fileName = input.nextLine();
-		//Should be able to write results to a new file
-		System.out.println("Would you like to append? [True/False]");
-		boolean append = input.nextBoolean();
-		gameManager.writeGameFile(fileName, append);
-	}
-	
 	public static void printSearches()
 	{
-		
 		gameManager.printSearches();
-		
 	}
-	
-	public static void printGames()
+	public static void printDatabase()
 	{
 		gameManager.printGames();
 	}
 
+	// case 4
+	public static void writeDatabaseFile() {
+        print("Enter the file name to write a Database File");
+        fileName = input.nextLine();
+        gameManager.writeDatabaseFile(fileName);
+    }
+	
+	public static void writeSearchFile() {
+        print("Enter the file name to write a Database File");
+        fileName = input.nextLine();
+        gameManager.writeSearchesFile(fileName);
+    }
+	
 }
